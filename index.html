@@ -208,21 +208,27 @@
                 <h2>Gallery & Testimonials</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="assets/img/gallery1.jpg" alt="Mary and her children smiling with schoolbooks" class="gallery-photo">
+                        <div class="image-container">
+                            <img src="assets/img/gallery1.jpg" alt="Mary and her children smiling with schoolbooks" class="gallery-photo">
+                        </div>
                         <div class="testimonial-content">
                             <p>"Thanks to MOPATIENCE, my children can now go to school and dream big!"</p>
                             <span class="testimonial-name">– Mary, Beneficiary</span>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery3.jpg" alt="John volunteering with a group of youth" class="gallery-photo">
+                        <div class="image-container">
+                            <img src="assets/img/gallery3.jpg" alt="John volunteering with a group of youth" class="gallery-photo">
+                        </div>
                         <div class="testimonial-content">
                             <p>"Volunteering here gave me purpose and lifelong friends."</p>
                             <span class="testimonial-name">– John, Volunteer</span>
                         </div>
                     </div>
                     <div class="gallery-item">
-                        <img src="assets/img/gallery4.jpg" alt="Sarah and her company team at a project site" class="gallery-photo">
+                        <div class="image-container">
+                            <img src="assets/img/gallery4.jpg" alt="Sarah and her company team at a project site" class="gallery-photo">
+                        </div>
                         <div class="testimonial-content">
                             <p>"Partnering with MOPATIENCE made a real impact in our CSR goals."</p>
                             <span class="testimonial-name">– Sarah, Corporate Partner</span>
@@ -251,11 +257,48 @@
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
                 <div class="contact-details">
-    <p>You can reach us via our recently registered M-Pesa Till Number, email, or phone for any inquiries or support.</p>
-    <p><i class="fas fa-envelope"></i> <a href="mailto:mopatienceorganization@gmail.com">mopatienceorganization@gmail.com</a></p>
-    <p><i class="fas fa-phone"></i> +254 713 544 770</p>
-    <p><i class="fas fa-wallet"></i> M-Pesa Till Number: <strong>012345678</strong></p>
-</div>
+                    <p>You can reach us via our recently registered M-Pesa Till Number, email, or phone for any inquiries or support.</p>
+                    
+                    <div class="contact-cards-container">
+                        <div class="contact-card email-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Email Us</h3>
+                                <a href="mailto:mopatienceorganization@gmail.com">mopatienceorganization@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card phone-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Call Us</h3>
+                                <a href="tel:+254713544770" class="phone-button">
+                                    <span class="phone-number">+254 713 544 770</span>
+                                    <span class="call-now">Call now</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card mpesa-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>M-Pesa Till</h3>
+                                <div class="mpesa-container">
+                                    <div class="mpesa-number">012345678</div>
+                                    <button class="mpesa-copy-btn" onclick="copyMpesaNumber()">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="social-links">
                     <a href="https://facebook.com/mopatienceorg" title="Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
                     <a href="https://twitter.com/mopatienceorg" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -319,6 +362,23 @@ function copyTillNumber() {
 }
 function showTillCopiedFeedback() {
     let btn = document.querySelector('.copy-till-btn');
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check"></i>';
+    btn.style.background = 'linear-gradient(135deg, #60a5fa 60%, #2563eb 100%)';
+    setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+    }, 1200);
+}
+
+function copyMpesaNumber() {
+    const mpesaNumber = '012345678';
+    navigator.clipboard.writeText(mpesaNumber).then(() => {
+        showMpesaCopiedFeedback();
+    });
+}
+function showMpesaCopiedFeedback() {
+    let btn = document.querySelector('.mpesa-copy-btn');
     const original = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-check"></i>';
     btn.style.background = 'linear-gradient(135deg, #60a5fa 60%, #2563eb 100%)';
