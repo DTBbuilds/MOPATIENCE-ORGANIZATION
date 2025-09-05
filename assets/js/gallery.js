@@ -33,6 +33,15 @@
     lb.img.src = s.src;
     lb.img.alt = s.alt || '';
     lb.caption.textContent = s.alt || '';
+    // Reset zoom/pan on image change
+    if (lb._zoom) {
+      lb._zoom.scale = 1;
+      lb._zoom.tx = 0;
+      lb._zoom.ty = 0;
+      if (lb.img) {
+        lb.img.style.transform = 'translate3d(0,0,0) scale(1)';
+      }
+    }
     
     // Preload neighbors only if not already preloaded
     const prevIdx = (lb.index - 1 + lb.slides.length) % lb.slides.length;
@@ -82,6 +91,10 @@
     lb.thumbButtons = [];
     lb.preloadedImages.clear();
     lb.root = null;
+    // Reset any transforms on the image
+    if (lb.img) {
+      lb.img.style.transform = 'translate3d(0,0,0) scale(1)';
+    }
     // Thumbnail cleanup disabled
   }
 
@@ -124,6 +137,129 @@
       if (e.key === 'ArrowLeft') nextLightbox(-1);
       if (e.key === 'ArrowRight') nextLightbox(1);
     });
+
+    // --- Mobile gestures: pinch-to-zoom, pan, swipe, double-tap ---
+    lb._zoom = {
+      scale: 1,
+      tx: 0,
+      ty: 0,
+      min: 1,
+      max: 3,
+      startDist: 0,
+      startScale: 1,
+      startTx: 0,
+      startTy: 0,
+      startX: 0,
+      startY: 0,
+      moved: 0,
+      lastTapTime: 0,
+    };
+
+    function applyTransform() {
+      if (!lb.img) return;
+      const z = lb._zoom;
+      lb.img.style.transform = `translate3d(${z.tx}px, ${z.ty}px, 0) scale(${z.scale})`;
+    }
+
+    function distance(a, b) {
+      const dx = a.clientX - b.clientX;
+      const dy = a.clientY - b.clientY;
+      return Math.hypot(dx, dy);
+    }
+
+    function handleTouchStart(e) {
+      if (!lb.open || !lb.img) return;
+      if (e.touches.length === 2) {
+        // Pinch start
+        const [t1, t2] = e.touches;
+        lb._zoom.startDist = distance(t1, t2);
+        lb._zoom.startScale = lb._zoom.scale;
+        lb._zoom.startTx = lb._zoom.tx;
+        lb._zoom.startTy = lb._zoom.ty;
+      } else if (e.touches.length === 1) {
+        // Pan or swipe start
+        lb._zoom.startX = e.touches[0].clientX;
+        lb._zoom.startY = e.touches[0].clientY;
+        lb._zoom.moved = 0;
+      }
+    }
+
+    function handleTouchMove(e) {
+      if (!lb.open || !lb.img) return;
+      if (e.touches.length === 2) {
+        // Pinch move
+        e.preventDefault();
+        const [t1, t2] = e.touches;
+        const dist = distance(t1, t2);
+        if (lb._zoom.startDist > 0) {
+          let nextScale = (dist / lb._zoom.startDist) * lb._zoom.startScale;
+          nextScale = Math.max(lb._zoom.min, Math.min(lb._zoom.max, nextScale));
+          lb._zoom.scale = nextScale;
+          applyTransform();
+        }
+      } else if (e.touches.length === 1) {
+        // Pan or swipe move
+        const dx = e.touches[0].clientX - lb._zoom.startX;
+        const dy = e.touches[0].clientY - lb._zoom.startY;
+        lb._zoom.moved = Math.max(lb._zoom.moved, Math.abs(dx), Math.abs(dy));
+        if (lb._zoom.scale > 1.01) {
+          // Pan image when zoomed
+          e.preventDefault();
+          lb._zoom.tx = lb._zoom.startTx + dx;
+          lb._zoom.ty = lb._zoom.startTy + dy;
+          applyTransform();
+        }
+      }
+    }
+
+    function handleTouchEnd(e) {
+      if (!lb.open) return;
+      // If ending a pinch, clamp position a bit (simple bounds)
+      if (lb._zoom.scale <= 1.01) {
+        // Snap back when not zoomed
+        lb._zoom.scale = 1; lb._zoom.tx = 0; lb._zoom.ty = 0; applyTransform();
+      } else {
+        // Optionally clamp tx/ty so image doesn't drift too far (simple soft clamp)
+        // For simplicity, leave as-is; browsers already rubber-band scrolls.
+      }
+
+      // Detect swipe to navigate only when not zoomed
+      if (lb._zoom.scale <= 1.01 && e.changedTouches && e.changedTouches[0]) {
+        const dx = e.changedTouches[0].clientX - lb._zoom.startX;
+        const dy = e.changedTouches[0].clientY - lb._zoom.startY;
+        if (Math.abs(dx) > 50 && Math.abs(dy) < 60) {
+          if (dx < 0) nextLightbox(1); else nextLightbox(-1);
+          return;
+        }
+      }
+
+      // Double-tap to toggle zoom
+      const now = Date.now();
+      if (e.touches && e.touches.length === 0) {
+        if (now - lb._zoom.lastTapTime < 300 && lb._zoom.moved < 10) {
+          if (lb._zoom.scale > 1) {
+            lb._zoom.scale = 1; lb._zoom.tx = 0; lb._zoom.ty = 0;
+          } else {
+            lb._zoom.scale = 2; // zoom in
+          }
+          applyTransform();
+          lb._zoom.lastTapTime = 0; // reset
+        } else {
+          lb._zoom.lastTapTime = now;
+        }
+      }
+
+      // Reset gesture baselines for next move
+      lb._zoom.startTx = lb._zoom.tx;
+      lb._zoom.startTy = lb._zoom.ty;
+    }
+
+    if (lb.img) {
+      // Use non-passive to allow preventDefault for custom pinch/pan
+      lb.img.addEventListener('touchstart', handleTouchStart, { passive: true });
+      lb.img.addEventListener('touchmove', handleTouchMove, { passive: false });
+      lb.img.addEventListener('touchend', handleTouchEnd, { passive: true });
+    }
     lb._wired = true;
   }
   async function fetchCaptions(folder) {
