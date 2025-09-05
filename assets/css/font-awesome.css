@@ -1,0 +1,29 @@
+/* Local Font Awesome - Self-hosted */
+/* Download fa-solid-900.woff2 from https://fontawesome.com/download and place in assets/fonts/ */
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url('assets/fonts/fa-solid-900.woff2') format('woff2');
+}
+
+/* Base styles for FA icons */
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Solid icons */
+.fas {
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Add specific icon CSS here, but for simplicity, rely on unicode */
+/* Example: .fa-home:before { content: "\f015"; } */

@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+build/
+dist/
+.cache/
+.next/
+out/
+coverage/
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Env
+.env
+.env.*
+
+# Misc
+*.local
+*.tmp
+*.bak
+# Service worker precache or temp
+.sw-cache/
+.temp/

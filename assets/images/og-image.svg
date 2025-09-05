@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="MOPATIENCE ORGANIZATION Social Preview">
+  <defs>
+    <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og)"/>
+  <rect x="60" y="60" width="160" height="160" rx="20" fill="#ffffff" opacity="0.9"/>
+  <text x="260" y="140" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="56" font-weight="700">MOPATIENCE ORGANIZATION</text>
+  <text x="260" y="200" fill="#eafff5" font-family="Inter, Arial, sans-serif" font-size="28">Empowering communities through charity and partnerships</text>
+  <text x="60" y="560" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="24" opacity="0.9">mopatience.org</text>
+</svg>

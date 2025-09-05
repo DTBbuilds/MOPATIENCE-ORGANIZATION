@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Impact Icon">
+  <rect x="0" y="0" width="80" height="80" rx="12" fill="#6366f1"/>
+  <circle cx="40" cy="40" r="20" fill="#fff"/>
+  <path d="M40 24 L46 40 L62 40 L49 50 L54 66 L40 56 L26 66 L31 50 L18 40 L34 40 Z" fill="#6366f1"/>
+</svg>

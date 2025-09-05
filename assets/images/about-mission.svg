@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Mission Icon">
+  <rect x="0" y="0" width="80" height="80" rx="12" fill="#0ea5e9"/>
+  <path d="M40 14 L52 40 L40 36 L28 40 Z" fill="#fff"/>
+  <circle cx="40" cy="54" r="6" fill="#fff"/>
+</svg>

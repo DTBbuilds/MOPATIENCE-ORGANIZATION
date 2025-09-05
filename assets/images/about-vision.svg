@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" role="img" aria-label="Vision Icon">
+  <rect x="0" y="0" width="80" height="80" rx="12" fill="#10b981"/>
+  <path d="M8 40 C20 24, 60 24, 72 40 C60 56, 20 56, 8 40 Z" fill="#fff"/>
+  <circle cx="40" cy="40" r="10" fill="#10b981"/>
+  <circle cx="40" cy="40" r="5" fill="#fff"/>
+</svg>
