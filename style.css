@@ -605,6 +605,11 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
 }
+/* Prevent any accidental horizontal scrolling */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 /* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -639,6 +644,12 @@ body {
   margin: 0;
   line-height: 1.6;
 }
+
+/* Make media responsive to avoid layout overflow */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
 header {
   background: var(--primary-blue);
   color: var(--white);
@@ -664,6 +675,9 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  /* Prevent long items from forcing horizontal overflow */
+  min-width: 0;
+  gap: 0.75rem;
 }
 .menu-toggle {
   display: none;
@@ -706,6 +720,8 @@ header {
   .nav-links.open {
     display: flex;
   }
+  /* Hide the topbar Donate CTA on small screens to avoid overflow; CTA exists in hero */
+  .navbar .cta-btn { display: none; }
 }
 .logo {
   display: flex;
