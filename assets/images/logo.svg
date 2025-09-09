@@ -1,49 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" width="160" height="40" role="img" aria-label="MOPATIENCE ORGANIZATION Logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" width="160" height="40" role="img" aria-label="MOPATIENCE ORGANIZATION Logo" shape-rendering="geometricPrecision" text-rendering="optimizeLegibility">
   <!-- Minimal MO monogram -->
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1E3A8A"/>
-      <stop offset="100%" stop-color="#2563EB"/>
+      <stop offset="0%" stop-color="#0F2A7A"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
     </linearGradient>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.6" flood-color="#0b1220" flood-opacity="0.25"/>
+    </filter>
   </defs>
 
   <!-- Pill background to give consistent silhouette on any header bg -->
-  <rect x="2" y="4" width="56" height="32" rx="16" fill="url(#g)" opacity="0.12"/>
-  <rect x="2" y="4" width="56" height="32" rx="16" fill="none" stroke="#2563EB" stroke-width="1.2" opacity="0.35"/>
+  <rect x="2" y="4" width="56" height="32" rx="16" fill="url(#g)" opacity="0.18"/>
+  <rect x="2" y="4" width="56" height="32" rx="16" fill="none" stroke="#1D4ED8" stroke-width="1.6" opacity="0.6"/>
 
   <!-- M letter (geometric) -->
-  <g transform="translate(12,8)">
+  <g transform="translate(12,8)" filter="url(#ds)">
     <!-- Left stem -->
-    <path d="M 0 22 V 2 a2 2 0 0 1 2 -2 h0 a2 2 0 0 1 2 2 v20" fill="#1E3A8A"/>
+    <path d="M 0 22 V 2 a2 2 0 0 1 2 -2 h0 a2 2 0 0 1 2 2 v20" fill="#0F2A7A"/>
     <!-- Right stem -->
-    <path d="M 18 22 V 2 a2 2 0 0 1 2 -2 h0 a2 2 0 0 1 2 2 v20" fill="#1E3A8A"/>
+    <path d="M 18 22 V 2 a2 2 0 0 1 2 -2 h0 a2 2 0 0 1 2 2 v20" fill="#0F2A7A"/>
     <!-- Middle chevron -->
-    <path d="M 4 8 L 10 14 L 16 8 L 16 12 L 10 18 L 4 12 Z" fill="#2563EB"/>
+    <path d="M 4 8 L 10 14 L 16 8 L 16 12 L 10 18 L 4 12 Z" fill="#3B82F6"/>
   </g>
 
   <!-- O letter (stroke only for minimal feel) -->
-  <g transform="translate(68,6)">
-    <circle cx="14" cy="14" r="12" fill="none" stroke="#1E3A8A" stroke-width="3"/>
+  <g transform="translate(68,6)" filter="url(#ds)">
+    <circle cx="14" cy="14" r="12" fill="none" stroke="#0F2A7A" stroke-width="4"/>
     <!-- Subtle highlight arc -->
-    <path d="M 6 9 A 10 10 0 0 1 14 4" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <path d="M 6 9 A 10 10 0 0 1 14 4" fill="none" stroke="#93C5FD" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
   </g>
 
   <!-- Optional small tagline bar for balance (no text, keeps minimal) -->
-  <rect x="104" y="18" width="44" height="4" rx="2" fill="#2563EB" opacity="0.55"/>
-</svg>
-
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="MOPATIENCE ORGANIZATION Logo">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0ea5e9"/>
-      <stop offset="100%" stop-color="#10b981"/>
-    </linearGradient>
-  </defs>
-  <rect width="256" height="256" rx="28" fill="url(#g)"/>
-  <g fill="#ffffff" font-family="Inter, Arial, sans-serif" font-weight="700" text-anchor="middle">
-    <text x="128" y="120" font-size="44">MO</text>
-    <text x="128" y="168" font-size="20">PATIENCE ORG</text>
-  </g>
+  <rect x="104" y="18" width="44" height="4" rx="2" fill="#1D4ED8" opacity="0.65"/>
 </svg>

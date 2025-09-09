@@ -1841,6 +1841,302 @@ section h2 i {
   font-weight: 800;
   letter-spacing: 0.6px;
 }
+/* --- Mobile Hamburger Menu (modern, minimal, accessible) --- */
+.menu-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.menu-toggle:hover,
+.menu-toggle:focus-visible { background: rgba(255,255,255,0.08); outline: none; }
+.menu-bar {
+  width: 24px;
+  height: 2.5px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform .25s ease, opacity .2s ease;
+}
+.menu-bar + .menu-bar { margin-top: 5px; }
+/* Animate to X when menu open */
+.menu-toggle.open .menu-bar:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+.menu-toggle.open .menu-bar:nth-child(2) { opacity: 0; }
+.menu-toggle.open .menu-bar:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* Mobile nav panel slide and backdrop */
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+  z-index: 9;
+}
+.nav-backdrop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.nav-links {
+  transition: transform .28s ease;
+}
+@media (max-width: 900px) {
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--primary-blue);
+    padding: 0.5rem 0 1rem 0;
+    transform: translateY(-12px);
+    z-index: 10;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-links li { padding: 0.15rem 0.75rem; }
+}
+
+/* Better focus visuals for links */
+.navbar .nav-links a:focus-visible {
+  outline: 3px solid rgba(255,255,255,0.55);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .menu-bar { transition: none; }
+  .nav-backdrop { transition: none; }
+  .nav-links { transition: none; }
+}
+/* --- Navbar icon-only links with reveal-on-click labels --- */
+.navbar .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease, width 0.2s ease;
+}
+.navbar .nav-links a i {
+  font-size: 1.05rem;
+  color: var(--white);
+}
+.navbar .nav-links a span {
+  display: none;
+  white-space: nowrap;
+}
+.navbar .nav-links a:hover,
+.navbar .nav-links a:focus-visible {
+  background: rgba(255,255,255,0.08);
+  outline: none;
+}
+/* When revealed, show label and expand pill */
+.navbar .nav-links a.show-label {
+  width: auto;
+  padding: 0.35rem 0.6rem;
+  gap: 0.45rem;
+}
+.navbar .nav-links a.show-label span { display: inline; }
+
+/* On small screens, always show labels for clarity in the dropdown menu */
+@media (max-width: 900px) {
+  .navbar .nav-links a {
+    width: auto;
+    padding: 0.5rem 0.75rem;
+    gap: 0.5rem;
+    justify-content: flex-start;
+  }
+  .navbar .nav-links a span { display: inline; }
+}
+
+/* On wide screens, reveal label on hover/focus (icon-only by default) */
+@media (min-width: 901px) {
+  .navbar .nav-links a:hover,
+  .navbar .nav-links a:focus-visible {
+    width: auto;
+    padding: 0.35rem 0.6rem;
+    gap: 0.45rem;
+  }
+  .navbar .nav-links a:hover span,
+  .navbar .nav-links a:focus-visible span {
+    display: inline;
+  }
+}
+/* --- About Section (Modern, Aesthetic) --- */
+.about-section {
+  padding: 4rem 0 3rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+.about-hero {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 2rem;
+  align-items: center;
+  margin: 1.5rem 0 2rem 0;
+}
+.about-hero-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 18px rgba(37,99,235,0.12));
+}
+.about-intro {
+  margin: 1rem 0 1.25rem 0;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--slate);
+}
+.about-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #1e3a8a;
+  border: 1px solid rgba(96,165,250,0.35);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.chip i { color: #2563eb; }
+
+.about-hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about-visual-card {
+  width: 100%;
+  max-width: 360px;
+  min-height: 220px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.2rem;
+  box-shadow: 0 14px 34px rgba(37,99,235,0.25);
+}
+.about-visual
+
+/* --- Contact Section Enhancements --- */
+.contact-section {
+  padding: 4rem 0 3rem 0;
+  background: linear-gradient(180deg, #ffffff 0%, #f6fafe 100%);
+}
+.contact-details { margin-bottom: 1rem; }
+.contact-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.contact-card {
+  position: relative;
+  overflow: hidden; /* for ripple */
+  border-radius: 16px;
+  padding: 1.25rem;
+  color: #0b1220;
+  background: #ffffff;
+  border: 1px solid rgba(96,165,250,0.15);
+  box-shadow: 0 8px 20px rgba(30,58,138,0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  cursor: pointer;
+  isolation: isolate;
+}
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(37,99,235,0.12);
+}
+.contact-card:active {
+  transform: translateY(-1px) scale(0.99);
+  filter: brightness(0.98);
+}
+.contact-card .contact-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.25rem; margin-bottom: 0.6rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+.contact-card .contact-label {
+  font-weight: 800; letter-spacing: .4px; color: #0b1220; opacity: .85; margin-bottom: .25rem;
+}
+.contact-card .contact-info h3 { margin: .2rem 0 .4rem 0; color: #0b1220; }
+.contact-card a { color: #0b1220; font-weight: 600; text-decoration: none; }
+.contact-card a:hover { text-decoration: underline; }
+
+/* Variants with subtle gradients and patterns */
+.email-card {
+  background:
+    radial-gradient(24px 24px at 20% 15%, rgba(59,130,246,0.16) 0%, transparent 60%),
+    radial-gradient(20px 20px at 80% 65%, rgba(37,99,235,0.12) 0%, transparent 60%),
+    #ffffff;
+  border: 1px solid rgba(59,130,246,0.25);
+}
+.email-card .contact-icon { background: linear-gradient(135deg, #1E3A8A, #2563EB); }
+
+.whatsapp-card {
+  background:
+    radial-gradient(24px 24px at 25% 20%, rgba(16,185,129,0.16) 0%, transparent 60%),
+    radial-gradient(20px 20px at 85% 70%, rgba(5,150,105,0.12) 0%, transparent 60%),
+    #ffffff;
+  border: 1px solid rgba(16,185,129,0.25);
+}
+.whatsapp-card .contact-icon { background: linear-gradient(135deg, #059669, #10B981); }
+
+.phone-card {
+  background:
+    radial-gradient(24px 24px at 22% 18%, rgba(99,102,241,0.16) 0%, transparent 60%),
+    radial-gradient(20px 20px at 78% 72%, rgba(129,140,248,0.12) 0%, transparent 60%),
+    #ffffff;
+  border: 1px solid rgba(99,102,241,0.25);
+}
+.phone-card .contact-icon { background: linear-gradient(135deg, #4F46E5, #818CF8); }
+
+/* Ripple effect element injected by JS */
+.ripple {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  /* use mask to create a circular wave centered at var(--rx), var(--ry) */
+  -webkit-mask: radial-gradient( circle at var(--rx, 50%) var(--ry, 50%), rgba(0,0,0,.35) 0%, rgba(0,0,0,.35) 10%, transparent 11% )
+             , linear-gradient(#000,#000);
+          mask: radial-gradient( circle at var(--rx, 50%) var(--ry, 50%), rgba(0,0,0,.35) 0%, rgba(0,0,0,.35) 10%, transparent 11% )
+             , linear-gradient(#000,#000);
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+  background: rgba(255,255,255,.5);
+  transform: scale(0.9);
+  transition: opacity .6s ease, transform .6s ease;
+  z-index: -1; /* stay below content but inside the card */
+}
+.contact-card.rippling .ripple {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+@media (max-width: 700px) {
+  .contact-cards-container { grid-template-columns: 1fr; }
+}
+
 /* --- Blog/News Section --- */
 .blog-section {
   padding: 4rem 0;
