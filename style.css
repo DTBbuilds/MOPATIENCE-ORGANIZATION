@@ -2,6 +2,36 @@
 .contact-form, .form-group, .submit-btn {
   display: none !important;
 }
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0.65rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    gap: 0.3rem;
+    flex-wrap: nowrap;
+  }
+
+  .logo-img {
+    height: 28px;
+  }
+
+  .org-name {
+    font-size: 0.9rem;
+    letter-spacing: 0.35px;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .menu-bar {
+    width: 22px;
+  }
+}
 /* Donate methods card: ensure blue text on white background */
 .donate-section .donate-methods {
   background: #ffffff !important;
@@ -729,6 +759,8 @@ header {
   gap: 0.5rem;
   font-size: 1.25rem;
   font-weight: 700;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .logo .icon {
   font-size: 2rem;
@@ -743,6 +775,9 @@ header {
 .org-name {
   letter-spacing: 1px;
   color: var(--white);
+  display: block;
+  line-height: 1.2;
+  white-space: normal;
 }
 .nav-links {
   list-style: none;
